@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+
+class RouteServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        $this->routes();
+    }
+
+    protected function routes(): void
+    {
+        if (file_exists(base_path('routes/web.php'))) {
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+        }
+
+        if (file_exists(base_path('routes/api.php'))) {
+            Route::prefix('api')
+                ->middleware('api')
+                ->group(base_path('routes/api.php'));
+        }
+    }
+}
