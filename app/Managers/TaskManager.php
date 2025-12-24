@@ -74,7 +74,7 @@ class TaskManager
 
         $task->title = Arr::get($data, 'title', $task->title);
         $task->description = Arr::get($data, 'description', $task->description);
-        $task->title = Arr::get($data, 'status', $task->status);
+        $task->status = Arr::get($data, 'status', $task->status);
         $task->save();
 
         return $task;
